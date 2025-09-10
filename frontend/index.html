@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phish-Gaurd</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen gradient-bg text-white">
+    <div class="container mx-auto px-4 py-12">
+        <header class="text-center mb-12">
+            <div class="flex justify-center mb-6">
+                <img width="120" height="120" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/bb895aa5-931b-4489-8ef3-3b7aaafe3a00.png" alt="Cybersecurity AI logo featuring a futuristic shield with embedded circuit patterns in shades of blue and silver, symbolizing digital protection" class="rounded-full border-4 border-white">
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Phish-Gaurd</h1>
+            <p class="text-xl text-blue-100 max-w-2xl mx-auto">
+                Our AI-powered system detects phishing attempts and malware with state-of-the-art accuracy
+            </p>
+        </header>
+
+        <main>
+            <div class="max-w-4xl mx-auto bg-white/10 backdrop-blur-sm rounded-xl p-6 mb-12">
+                <h2 class="text-2xl font-semibold mb-4">Email Analysis</h2>
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="flex-1">
+                        <label for="emailContent" class="block text-sm font-medium text-blue-100 mb-2">Paste email content:</label>
+                        <textarea id="emailContent" rows="12" class="w-full px-4 py-3 rounded-lg bg-white/20 border border-blue-300/50 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Paste suspicious email content here..."></textarea>
+                        <button id="analyzeBtn" class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-200">
+                            Analyze Email
+                        </button>
+                    </div>
+                    <div class="flex-1">
+                        <label class="block text-sm font-medium text-blue-100 mb-2">Detection Results:</label>
+                        <div id="resultsContainer" class="bg-white/5 border border-blue-300/30 rounded-lg p-6 h-full">
+                            <div id="initialState" class="flex flex-col items-center justify-center h-full text-center">
+                                <img width="80" height="80" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/31c1e07e-f662-4781-8ed9-e902f7773627.png" alt="Magnifying glass icon with digital binary code background representing email analysis" class="mb-4 opacity-70">
+                                <p class="text-blue-200">Enter an email and click "Analyze" to check for phishing attempts</p>
+                            </div>
+                            <div id="loadingState" class="hidden flex-col items-center justify-center h-full">
+                                <div class="loading-spinner h-12 w-12 border-4 rounded-full mb-4"></div>
+                                <p class="text-blue-200">Analyzing email content...</p>
+                            </div>
+                            <div id="resultsState" class="hidden h-full">
+                                <div class="mb-4">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="font-medium">Threat Level:</span>
+                                        <span id="threatLevelText" class="font-bold"></span>
+                                    </div>
+                                    <div class="threat-indicator" id="threatIndicator"></div>
+                                </div>
+                                <div class="space-y-4">
+                                    <div id="resultsList"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-2xl font-semibold mb-6">Common Phishing Indicators</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Card 1 -->
+                    <div class="detection-card bg-white/5 rounded-xl p-6 border border-blue-300/30">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-red-500/20 p-3 rounded-lg mr-4">
+                                <img width="32" height="32" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/bc7a7759-3414-4a87-a2c5-4521df6767c9.png" alt="Red warning triangle icon symbolizing urgency and danger in phishing emails" class="w-8 h-8">
+                            </div>
+                            <h3 class="text-lg font-semibold">Urgent Language</h3>
+                        </div>
+                        <p class="text-blue-200">Phishing emails often create a sense of urgency to prompt quick action without scrutiny.</p>
+                    </div>
+                    
+                    <!-- Card 2 -->
+                    <div class="detection-card bg-white/5 rounded-xl p-6 border border-blue-300/30">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-yellow-500/20 p-3 rounded-lg mr-4">
+                                <img width="32" height="32" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4d06a059-b122-4378-95a1-b423737f373d.png" alt="Question mark inside a document symbolizing suspicious links in emails" class="w-8 h-8">
+                            </div>
+                            <h3 class="text-lg font-semibold">Suspicious Links</h3>
+                        </div>
+                        <p class="text-blue-200">Always hover over links to see their actual destination before clicking.</p>
+                    </div>
+                    
+                    <!-- Card 3 -->
+                    <div class="detection-card bg-white/5 rounded-xl p-6 border border-blue-300/30">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-500/20 p-3 rounded-lg mr-4">
+                                <img width="32" height="32" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2fbda36e-855d-4e08-9c35-86ad108f20bb.png" alt="Envelope with a lock symbol representing suspicious sender addresses" class="w-8 h-8">
+                            </div>
+                            <h3 class="text-lg font-semibold">Sender Address</h3>
+                        </div>
+                        <p class="text-blue-200">Check for slight misspellings or unusual domains in the sender's email address.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
