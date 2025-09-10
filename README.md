@@ -1,4 +1,8 @@
 # Phishing Email Analyzer
+
+# Problem Statement
+CYBERSECURITY AI – PHISHING EMAIL & MALWARE DETECTOR
+
 # Description
 A web application that analyzes email content to detect phishing threats by checking for urgent language, suspicious links, and sender contact information. The backend is built with Flask, and the frontend uses HTML, CSS, and JavaScript.
 
@@ -61,3 +65,5 @@ Flask
 Flask-CORS
 HTML, CSS, JavaScript
 
+# NOTE
+if the interface is not loaded properly, refresh the webpage once.
